@@ -1,0 +1,202 @@
+﻿@model LNCT_TNP_Project.Models.StudentRegisterDTO
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home";
+}
+
+<div class="container slid_mg">
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/Content/img/lnctNewImg.jpg" jpg" alt="#" width="100%">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/img/Lnct2new.jpg" alt="#" width="100%">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Content/img/lnctDanceImage.jpg" alt="#" width="100%">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+
+    </div>
+</div>
+
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="container-fluid">
+                    <div class="row no-gutter">
+                        <div class="col-md-8 col-lg-12 login_bg">
+                            <div class="login d-flex align-items-center py-5">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-9 col-lg-8 mx-auto">
+                                            <h3 class="login-heading mb-4 text-center">Login as a</h3>
+
+                                            <div class="col-md-12">
+
+
+
+                                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"><font color="#fff">Student</font></a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><font color="#fff">TNP Member</font></a>
+                                                    </li>
+
+                                                </ul>
+                                                <div class="tab-content" id="pills-tabContent">
+
+                                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+                                                        @using (Html.BeginForm("Std_Login", "StudentProfile", FormMethod.Post, new { @class = "user", id = "loginForm" }))
+                                                        {
+
+                                                            @Html.AntiForgeryToken()
+                                                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                                            <h6>@TempData["message"]</h6>
+                                                            <div class="form-label-group">
+                                                                @Html.TextBoxFor(m => m.EnrollmentNo, new { @class = "form-control form-control-user", placeholder = "Enrollment no", id = "Email", type = "text" })
+                                                                @Html.ValidationMessageFor(m => m.EnrollmentNo, "Please enter EnrollmentNo ", new { @class = "text-danger", style = "   display:none" })
+                                                            </div>
+                                                            <div class="form-label-group">
+                                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-user", id = "Password", placeholder = "Password" })
+                                                                @Html.ValidationMessageFor(m => m.Password, "Please enter password ", new { @class = "text-danger", style = "   display:none" })
+                                                            </div>
+                                                            <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit" id="btnlogin">Sign in</button>
+
+                                                        }
+
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+                                                        @using (Html.BeginForm("LoginTnp", "TNP", FormMethod.Post, new { @class = "user", id = "TnploginForm" }))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                                                           <h6>@TempData["message"]</h6>
+                                                            <div class="form-label-group">
+                                                                @Html.TextBox("EmailID", null, new { @class = "form-control", @id = "TnpEmail", @placeholder = "Email Address" })
+                                                                <span class="text-danger" style="display:none"></span>
+                                                            </div>
+
+                                                            <div class="form-label-group">
+                                                                @Html.TextBox("Password", null, new { @class = "form-control", @id = "TnpPassword", @placeholder = "Password", type = "Password" })
+                                                                <span class="text-danger" style="display:none"></span>
+                                                            </div>
+
+                                                            <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="button" id="btntnplogin">Sign in</button>
+
+                                                        }
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <h3 class=" mb-3">Contact Us</h3>
+
+                <h5>Lakshmi Narain College Of Technology</h5>
+                <h5>Bhavrasala, Sanwer Road Indore-453331 (M.P.)</h5>
+                <h5 class="mb-4">(ph): 090988 11111</h5>
+
+                <div class="col-md-12">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14712.239616108187!2d75.8424626!3d22.8002441!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd8d494839162020b!2sLakshmi+Narain+College+Of+Technology!5e0!3m2!1sen!2sin!4v1550047979185" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#btnlogin").click(function () {
+            ValidationForm();
+        });
+
+        $("#btntnplogin").click(function () {
+            ValidationTnpForm();
+
+        });
+    })
+
+    function ValidationForm() {
+        var return_val = true;
+        if ($('#Email').val().trim() == '') {
+            $('#Email').next('span').show();
+            return_val = false;
+        } else {
+            $('#Email').next('span').hide();
+        }
+        if ($('#Password').val().trim() == '') {
+            $('#Password').next('span').show();
+            return_val = false;
+        } else {
+            $('#Password').next('span').hide();
+        }
+        if (return_val) {
+            $("#loginForm").submit();
+        }
+    }
+
+    function ValidationTnpForm() {
+        var return_val = true;
+        if ($('#TnpEmail').val().trim() == '') {
+            $('#TnpEmail').next('span').html("Please enter Email Id").show();
+            return_val = false;
+        } else {
+            $('#TnpEmail').next('span').hide();
+        }
+        if ($('#TnpPassword').val().trim() == '') {
+            $('#TnpPassword').next('span').html("Please enter password").show();
+            return_val = false;
+        } else {
+            $('#TnpPassword').next('span').hide();
+        }
+        if (return_val) {
+            $("#TnploginForm").submit();
+
+        }
+    }
+
+</script>

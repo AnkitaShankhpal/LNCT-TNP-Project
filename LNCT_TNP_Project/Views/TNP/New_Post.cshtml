@@ -1,0 +1,138 @@
+﻿@model LNCT_TNP_Project.Models.NewPostDTO
+
+@{
+    Layout = "~/Views/Shared/_LayoutTNP.cshtml";
+    ViewBag.Title = "New_Post";
+}
+
+<div class="container">
+
+    <h3 class=" mb-3">New Post</h3>
+
+    <div class="col-md-12 mb-5 ">
+        <div class="row">
+            <div class="col-md-8 m-auto">
+
+                @using (Html.BeginForm("New_Post", "TNP", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @*@Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                            <div class="custom-file">
+                                <label>Title</label>
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", id = "title" } })
+                                <span class="text-danger" style="display:none"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @*@Html.LabelFor(model => model.Post, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+                            <div class="custom-file">
+                                <label>Content</label>
+                                @Html.TextAreaFor(model => model.Post, new { @class = "form-control", rows = "10", id = "postid" })
+                                <span class="text-danger" style="display:none"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="custom-file">
+                                @Html.TextBoxFor(model => model.PostFile, new { @class = "form-control", type = "file", id = "postFile" })
+                                <span class="text-danger" style="display:none"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="button" class="btn btn-secondary mb-5" id="btnPostSend">Post</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Content/vendor/jquery/jquery.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('textarea').keypress(function (e) {
+        var tval = $('textarea').val(),
+            tlength = tval.length,
+            set = 500,
+            remain = parseInt(set - tlength);
+            $('#postid').next('span').text(remain);
+            if (remain <= 0 && e.which !== 0 && e.charCode !== 0) {
+
+                $('#postid').next('span').html("can not write more than 500 characters").show();
+                return false;
+            }
+            else if (remain < set) {
+                $('#postid').next('span').hide();
+            }
+           
+    })
+
+        $("#btnPostSend").click(function () {
+
+            var IsValid = ValidationForm();
+            if (IsValid) {
+                $("#myForm").submit();
+            }
+            
+        })
+    })
+    
+    function ValidationForm() {
+        var array = ['pdf', 'doc'];
+        //var xyz = document.getElementById("postFile");
+        var xyz = $('#postFile').val();
+        var Extension = xyz.substring(xyz.lastIndexOf('.') + 1).toLowerCase();
+        
+        var return_val = true;
+
+        if ($('#title').val().trim() == '') {
+            $('#title').next('span').html("Please enter title").show();
+            return_val = false;
+        } else {
+            $('#title').next('span').hide();
+        }
+        if ($('#postid').val().trim() == '') {
+            $('#postid').next('span').html("Please add content").show();
+            return_val = false;
+        }
+        else {
+
+            $('#postid').next('span').hide();
+        }
+        if ($('#postFile').get(0).files.length === 0) {
+            $('#postFile').next('span').html("Please add file").show();
+            return_val = false;
+        }
+        else {
+            if (array.indexOf(Extension) <= -1) {
+                $('#postFile').next('span').html("Please Upload only pdf or doc extension file").show();
+                return_val = false;
+            }
+            else {
+                $('#postFile').next('span').hide();
+            }
+        }
+        return return_val;
+
+    }
+
+</script>

@@ -1,0 +1,1182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LNCT_TNP_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AskQuery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubjectOfQuery" Type="nvarchar" MaxLength="100" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="Problem" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ExceptionLogger">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExceptionMessage" Type="nvarchar(max)" />
+          <Property Name="ControllerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ExceptionStackTrace" Type="nvarchar(max)" />
+          <Property Name="LogTime" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LNCT_TNP_DB.dbo.TblAdmin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TblAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="60" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TblBranch">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TblCourse">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TblDepartment">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="TblNewPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Post" Type="nvarchar(max)" />
+          <Property Name="PostFile" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TblStudentAcademics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="SSC_Percentage" Type="nvarchar" MaxLength="50" />
+          <Property Name="SSC_SchoolName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SSC_Board" Type="nvarchar" MaxLength="50" />
+          <Property Name="SSC_YOP" Type="nvarchar" MaxLength="50" />
+          <Property Name="HSC_Percentage" Type="nvarchar" MaxLength="50" />
+          <Property Name="HSC_SchoolName" Type="nvarchar" MaxLength="100" />
+          <Property Name="HSC_Board" Type="nvarchar" MaxLength="50" />
+          <Property Name="HSC_YOP" Type="nvarchar" MaxLength="50" />
+          <Property Name="Diploma_Percentage" Type="nvarchar" MaxLength="50" />
+          <Property Name="Diploma_YOP" Type="nvarchar" MaxLength="50" />
+          <Property Name="UG_Percentage" Type="nvarchar" MaxLength="50" />
+          <Property Name="UG_YOP" Type="nvarchar" MaxLength="50" />
+          <Property Name="UG_Back" Type="nvarchar" MaxLength="50" />
+          <Property Name="UG_YearGap" Type="nvarchar" MaxLength="50" />
+          <Property Name="PG_Percentage" Type="nvarchar" MaxLength="50" />
+          <Property Name="PG_YOP" Type="nvarchar" MaxLength="50" />
+          <Property Name="PG_Back" Type="nvarchar" MaxLength="50" />
+          <Property Name="PG_YearGap" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="BranchID" Type="int" />
+        </EntityType>
+        <EntityType Name="TblStudentDiploma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Percentage" Type="nvarchar(max)" />
+          <Property Name="YOP" Type="date" />
+          <Property Name="StudentID" Type="int" />
+        </EntityType>
+        <EntityType Name="TblStudentHSC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Percentage" Type="nvarchar(max)" />
+          <Property Name="SchoolName" Type="nvarchar(max)" />
+          <Property Name="Board" Type="nvarchar(max)" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="YOP" Type="date" />
+        </EntityType>
+        <EntityType Name="TblStudentPostGraduate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Percentage" Type="nvarchar(max)" />
+          <Property Name="YOP" Type="date" />
+          <Property Name="Back" Type="nvarchar(max)" />
+          <Property Name="YearGap" Type="int" />
+          <Property Name="StudentID" Type="int" />
+        </EntityType>
+        <EntityType Name="TblStudentProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar(max)" />
+          <Property Name="MobileNo" Type="nvarchar(max)" />
+          <Property Name="FatherName" Type="nvarchar(max)" />
+          <Property Name="CurrentAddress" Type="nvarchar(max)" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="BranchID" Type="int" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="CourseID" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TblStudentRegister">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnrollmentNo" Type="nvarchar(max)" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TblStudentSSC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Percentage" Type="nvarchar(max)" />
+          <Property Name="SchoolName" Type="nvarchar(max)" />
+          <Property Name="Board" Type="nvarchar(max)" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="YOP" Type="date" />
+        </EntityType>
+        <EntityType Name="TblStudentUndertGraduate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Percentage" Type="nvarchar(max)" />
+          <Property Name="YOP" Type="date" />
+          <Property Name="Back" Type="nvarchar(max)" />
+          <Property Name="YearGap" Type="int" />
+          <Property Name="StudentID" Type="int" />
+        </EntityType>
+        <EntityType Name="TblTNPMemberProfile">
+          <Key>
+            <PropertyRef Name="TNPMemberID" />
+          </Key>
+          <Property Name="TNPMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="DepartmentID" Type="int" />
+        </EntityType>
+        <EntityType Name="TblTNPMemberRegister">
+          <Key>
+            <PropertyRef Name="TNPID" />
+          </Key>
+          <Property Name="TNPID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__AskQuery__Studen__3C34F16F">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="AskQuery" Type="Self.AskQuery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="AskQuery">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Branc__1B0907CE">
+          <End Role="TblBranch" Type="Self.TblBranch" Multiplicity="0..1" />
+          <End Role="TblStudentProfile" Type="Self.TblStudentProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblBranch">
+              <PropertyRef Name="BranchId" />
+            </Principal>
+            <Dependent Role="TblStudentProfile">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Branc__72C60C4A">
+          <End Role="TblBranch" Type="Self.TblBranch" Multiplicity="0..1" />
+          <End Role="TblStudentAcademics" Type="Self.TblStudentAcademics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblBranch">
+              <PropertyRef Name="BranchId" />
+            </Principal>
+            <Dependent Role="TblStudentAcademics">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Cours__1CF15040">
+          <End Role="TblCourse" Type="Self.TblCourse" Multiplicity="0..1" />
+          <End Role="TblStudentProfile" Type="Self.TblStudentProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCourse">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="TblStudentProfile">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Cours__71D1E811">
+          <End Role="TblCourse" Type="Self.TblCourse" Multiplicity="0..1" />
+          <End Role="TblStudentAcademics" Type="Self.TblStudentAcademics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCourse">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="TblStudentAcademics">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Depar__1BFD2C07">
+          <End Role="TblDepartment" Type="Self.TblDepartment" Multiplicity="0..1" />
+          <End Role="TblStudentProfile" Type="Self.TblStudentProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="TblStudentProfile">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Depar__70DDC3D8">
+          <End Role="TblDepartment" Type="Self.TblDepartment" Multiplicity="0..1" />
+          <End Role="TblStudentAcademics" Type="Self.TblStudentAcademics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="TblStudentAcademics">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__1A14E395">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentProfile" Type="Self.TblStudentProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentProfile">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__1FCDBCEB">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentHSC" Type="Self.TblStudentHSC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentHSC">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__22AA2996">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentSSC" Type="Self.TblStudentSSC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentSSC">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__25869641">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentDiploma" Type="Self.TblStudentDiploma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentDiploma">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__286302EC">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentPostGraduate" Type="Self.TblStudentPostGraduate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentPostGraduate">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__2B3F6F97">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentUndertGraduate" Type="Self.TblStudentUndertGraduate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentUndertGraduate">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__6FE99F9F">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentAcademics" Type="Self.TblStudentAcademics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentAcademics">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblTNPMem__Depar__34C8D9D1">
+          <End Role="TblDepartment" Type="Self.TblDepartment" Multiplicity="0..1" />
+          <End Role="TblTNPMemberProfile" Type="Self.TblTNPMemberProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="TblTNPMemberProfile">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LNCT_TNP_DBModelStoreContainer">
+          <EntitySet Name="AskQuery" EntityType="Self.AskQuery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExceptionLogger" EntityType="Self.ExceptionLogger" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblBranch" EntityType="Self.TblBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblCourse" EntityType="Self.TblCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblDepartment" EntityType="Self.TblDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblNewPost" EntityType="Self.TblNewPost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblStudentAcademics" EntityType="Self.TblStudentAcademics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblStudentDiploma" EntityType="Self.TblStudentDiploma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblStudentHSC" EntityType="Self.TblStudentHSC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblStudentPostGraduate" EntityType="Self.TblStudentPostGraduate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblStudentProfile" EntityType="Self.TblStudentProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblStudentRegister" EntityType="Self.TblStudentRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblStudentSSC" EntityType="Self.TblStudentSSC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblStudentUndertGraduate" EntityType="Self.TblStudentUndertGraduate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblTNPMemberProfile" EntityType="Self.TblTNPMemberProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblTNPMemberRegister" EntityType="Self.TblTNPMemberRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblAdmin" EntityType="Self.TblAdmin" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TblAdmin].[Id] AS [Id], 
+    [TblAdmin].[Name] AS [Name], 
+    [TblAdmin].[EmailAddress] AS [EmailAddress], 
+    [TblAdmin].[Password] AS [Password]
+    FROM [dbo].[TblAdmin] AS [TblAdmin]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__AskQuery__Studen__3C34F16F" Association="Self.FK__AskQuery__Studen__3C34F16F">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegister" />
+            <End Role="AskQuery" EntitySet="AskQuery" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Branc__1B0907CE" Association="Self.FK__TblStuden__Branc__1B0907CE">
+            <End Role="TblBranch" EntitySet="TblBranch" />
+            <End Role="TblStudentProfile" EntitySet="TblStudentProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Branc__72C60C4A" Association="Self.FK__TblStuden__Branc__72C60C4A">
+            <End Role="TblBranch" EntitySet="TblBranch" />
+            <End Role="TblStudentAcademics" EntitySet="TblStudentAcademics" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Cours__1CF15040" Association="Self.FK__TblStuden__Cours__1CF15040">
+            <End Role="TblCourse" EntitySet="TblCourse" />
+            <End Role="TblStudentProfile" EntitySet="TblStudentProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Cours__71D1E811" Association="Self.FK__TblStuden__Cours__71D1E811">
+            <End Role="TblCourse" EntitySet="TblCourse" />
+            <End Role="TblStudentAcademics" EntitySet="TblStudentAcademics" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Depar__1BFD2C07" Association="Self.FK__TblStuden__Depar__1BFD2C07">
+            <End Role="TblDepartment" EntitySet="TblDepartment" />
+            <End Role="TblStudentProfile" EntitySet="TblStudentProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Depar__70DDC3D8" Association="Self.FK__TblStuden__Depar__70DDC3D8">
+            <End Role="TblDepartment" EntitySet="TblDepartment" />
+            <End Role="TblStudentAcademics" EntitySet="TblStudentAcademics" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__1A14E395" Association="Self.FK__TblStuden__Stude__1A14E395">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegister" />
+            <End Role="TblStudentProfile" EntitySet="TblStudentProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__1FCDBCEB" Association="Self.FK__TblStuden__Stude__1FCDBCEB">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegister" />
+            <End Role="TblStudentHSC" EntitySet="TblStudentHSC" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__22AA2996" Association="Self.FK__TblStuden__Stude__22AA2996">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegister" />
+            <End Role="TblStudentSSC" EntitySet="TblStudentSSC" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__25869641" Association="Self.FK__TblStuden__Stude__25869641">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegister" />
+            <End Role="TblStudentDiploma" EntitySet="TblStudentDiploma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__286302EC" Association="Self.FK__TblStuden__Stude__286302EC">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegister" />
+            <End Role="TblStudentPostGraduate" EntitySet="TblStudentPostGraduate" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__2B3F6F97" Association="Self.FK__TblStuden__Stude__2B3F6F97">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegister" />
+            <End Role="TblStudentUndertGraduate" EntitySet="TblStudentUndertGraduate" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__6FE99F9F" Association="Self.FK__TblStuden__Stude__6FE99F9F">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegister" />
+            <End Role="TblStudentAcademics" EntitySet="TblStudentAcademics" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblTNPMem__Depar__34C8D9D1" Association="Self.FK__TblTNPMem__Depar__34C8D9D1">
+            <End Role="TblDepartment" EntitySet="TblDepartment" />
+            <End Role="TblTNPMemberProfile" EntitySet="TblTNPMemberProfile" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LNCT_TNP_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="TblBranch">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblStudentProfiles" Relationship="Self.FK__TblStuden__Branc__1B0907CE" FromRole="TblBranch" ToRole="TblStudentProfile" />
+          <NavigationProperty Name="TblStudentAcademics" Relationship="LNCT_TNP_DBModel.FK__TblStuden__Branc__72C60C4A" FromRole="TblBranch" ToRole="TblStudentAcademic" />
+        </EntityType>
+        <EntityType Name="TblCourse">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblStudentProfiles" Relationship="Self.FK__TblStuden__Cours__1CF15040" FromRole="TblCourse" ToRole="TblStudentProfile" />
+          <NavigationProperty Name="TblStudentAcademics" Relationship="LNCT_TNP_DBModel.FK__TblStuden__Cours__71D1E811" FromRole="TblCourse" ToRole="TblStudentAcademic" />
+        </EntityType>
+        <EntityType Name="TblDepartment">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblStudentProfiles" Relationship="Self.FK__TblStuden__Depar__1BFD2C07" FromRole="TblDepartment" ToRole="TblStudentProfile" />
+          <NavigationProperty Name="TblTNPMemberProfiles" Relationship="Self.FK__TblTNPMem__Depar__34C8D9D1" FromRole="TblDepartment" ToRole="TblTNPMemberProfile" />
+          <NavigationProperty Name="TblStudentAcademics" Relationship="LNCT_TNP_DBModel.FK__TblStuden__Depar__70DDC3D8" FromRole="TblDepartment" ToRole="TblStudentAcademic" />
+        </EntityType>
+        <EntityType Name="TblStudentDiploma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Percentage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YOP" Type="DateTime" Precision="0" />
+          <Property Name="StudentID" Type="Int32" />
+          <NavigationProperty Name="TblStudentRegister" Relationship="Self.FK__TblStuden__Stude__25869641" FromRole="TblStudentDiploma" ToRole="TblStudentRegister" />
+        </EntityType>
+        <EntityType Name="TblStudentHSC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Percentage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="YOP" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TblStudentRegister" Relationship="Self.FK__TblStuden__Stude__1FCDBCEB" FromRole="TblStudentHSC" ToRole="TblStudentRegister" />
+        </EntityType>
+        <EntityType Name="TblStudentPostGraduate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Percentage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YOP" Type="DateTime" Precision="0" />
+          <Property Name="Back" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YearGap" Type="Int32" />
+          <Property Name="StudentID" Type="Int32" />
+          <NavigationProperty Name="TblStudentRegister" Relationship="Self.FK__TblStuden__Stude__286302EC" FromRole="TblStudentPostGraduate" ToRole="TblStudentRegister" />
+        </EntityType>
+        <EntityType Name="TblStudentProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="BranchID" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <NavigationProperty Name="TblBranch" Relationship="Self.FK__TblStuden__Branc__1B0907CE" FromRole="TblStudentProfile" ToRole="TblBranch" />
+          <NavigationProperty Name="TblCourse" Relationship="Self.FK__TblStuden__Cours__1CF15040" FromRole="TblStudentProfile" ToRole="TblCourse" />
+          <NavigationProperty Name="TblDepartment" Relationship="Self.FK__TblStuden__Depar__1BFD2C07" FromRole="TblStudentProfile" ToRole="TblDepartment" />
+          <NavigationProperty Name="TblStudentRegister" Relationship="Self.FK__TblStuden__Stude__1A14E395" FromRole="TblStudentProfile" ToRole="TblStudentRegister" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TblStudentRegister">
+          <Key>
+            <PropertyRef Name="StudentID" />
+          </Key>
+          <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnrollmentNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TblStudentDiplomas" Relationship="Self.FK__TblStuden__Stude__25869641" FromRole="TblStudentRegister" ToRole="TblStudentDiploma" />
+          <NavigationProperty Name="TblStudentHSCs" Relationship="Self.FK__TblStuden__Stude__1FCDBCEB" FromRole="TblStudentRegister" ToRole="TblStudentHSC" />
+          <NavigationProperty Name="TblStudentPostGraduates" Relationship="Self.FK__TblStuden__Stude__286302EC" FromRole="TblStudentRegister" ToRole="TblStudentPostGraduate" />
+          <NavigationProperty Name="TblStudentProfiles" Relationship="Self.FK__TblStuden__Stude__1A14E395" FromRole="TblStudentRegister" ToRole="TblStudentProfile" />
+          <NavigationProperty Name="TblStudentSSCs" Relationship="Self.FK__TblStuden__Stude__22AA2996" FromRole="TblStudentRegister" ToRole="TblStudentSSC" />
+          <NavigationProperty Name="TblStudentUndertGraduates" Relationship="Self.FK__TblStuden__Stude__2B3F6F97" FromRole="TblStudentRegister" ToRole="TblStudentUndertGraduate" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TblStudentAcademics" Relationship="LNCT_TNP_DBModel.FK__TblStuden__Stude__6FE99F9F" FromRole="TblStudentRegister" ToRole="TblStudentAcademic" />
+          <NavigationProperty Name="AskQueries" Relationship="LNCT_TNP_DBModel.FK__AskQuery__Studen__3C34F16F" FromRole="TblStudentRegister" ToRole="AskQuery" />
+        </EntityType>
+        <EntityType Name="TblStudentSSC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Percentage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Board" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="YOP" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="TblStudentRegister" Relationship="Self.FK__TblStuden__Stude__22AA2996" FromRole="TblStudentSSC" ToRole="TblStudentRegister" />
+        </EntityType>
+        <EntityType Name="TblStudentUndertGraduate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Percentage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YOP" Type="DateTime" Precision="0" />
+          <Property Name="Back" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YearGap" Type="Int32" />
+          <Property Name="StudentID" Type="Int32" />
+          <NavigationProperty Name="TblStudentRegister" Relationship="Self.FK__TblStuden__Stude__2B3F6F97" FromRole="TblStudentUndertGraduate" ToRole="TblStudentRegister" />
+        </EntityType>
+        <EntityType Name="TblTNPMemberProfile">
+          <Key>
+            <PropertyRef Name="TNPMemberID" />
+          </Key>
+          <Property Name="TNPMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <NavigationProperty Name="TblDepartment" Relationship="Self.FK__TblTNPMem__Depar__34C8D9D1" FromRole="TblTNPMemberProfile" ToRole="TblDepartment" />
+        </EntityType>
+        <Association Name="FK__TblStuden__Branc__1B0907CE">
+          <End Role="TblBranch" Type="Self.TblBranch" Multiplicity="0..1" />
+          <End Role="TblStudentProfile" Type="Self.TblStudentProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblBranch">
+              <PropertyRef Name="BranchId" />
+            </Principal>
+            <Dependent Role="TblStudentProfile">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Cours__1CF15040">
+          <End Role="TblCourse" Type="Self.TblCourse" Multiplicity="0..1" />
+          <End Role="TblStudentProfile" Type="Self.TblStudentProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCourse">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="TblStudentProfile">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Depar__1BFD2C07">
+          <End Role="TblDepartment" Type="Self.TblDepartment" Multiplicity="0..1" />
+          <End Role="TblStudentProfile" Type="Self.TblStudentProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="TblStudentProfile">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblTNPMem__Depar__34C8D9D1">
+          <End Role="TblDepartment" Type="Self.TblDepartment" Multiplicity="0..1" />
+          <End Role="TblTNPMemberProfile" Type="Self.TblTNPMemberProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="TblTNPMemberProfile">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__25869641">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentDiploma" Type="Self.TblStudentDiploma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentDiploma">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__1FCDBCEB">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentHSC" Type="Self.TblStudentHSC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentHSC">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__286302EC">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentPostGraduate" Type="Self.TblStudentPostGraduate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentPostGraduate">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__1A14E395">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentProfile" Type="Self.TblStudentProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentProfile">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__22AA2996">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentSSC" Type="Self.TblStudentSSC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentSSC">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__2B3F6F97">
+          <End Role="TblStudentRegister" Type="Self.TblStudentRegister" Multiplicity="0..1" />
+          <End Role="TblStudentUndertGraduate" Type="Self.TblStudentUndertGraduate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentUndertGraduate">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LNCT_TNP_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="TblBranches" EntityType="Self.TblBranch" />
+          <EntitySet Name="TblCourses" EntityType="Self.TblCourse" />
+          <EntitySet Name="TblDepartments" EntityType="Self.TblDepartment" />
+          <EntitySet Name="TblStudentDiplomas" EntityType="Self.TblStudentDiploma" />
+          <EntitySet Name="TblStudentHSCs" EntityType="Self.TblStudentHSC" />
+          <EntitySet Name="TblStudentPostGraduates" EntityType="Self.TblStudentPostGraduate" />
+          <EntitySet Name="TblStudentProfiles" EntityType="Self.TblStudentProfile" />
+          <EntitySet Name="TblStudentRegisters" EntityType="Self.TblStudentRegister" />
+          <EntitySet Name="TblStudentSSCs" EntityType="Self.TblStudentSSC" />
+          <EntitySet Name="TblStudentUndertGraduates" EntityType="Self.TblStudentUndertGraduate" />
+          <EntitySet Name="TblTNPMemberProfiles" EntityType="Self.TblTNPMemberProfile" />
+          <AssociationSet Name="FK__TblStuden__Branc__1B0907CE" Association="Self.FK__TblStuden__Branc__1B0907CE">
+            <End Role="TblBranch" EntitySet="TblBranches" />
+            <End Role="TblStudentProfile" EntitySet="TblStudentProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Cours__1CF15040" Association="Self.FK__TblStuden__Cours__1CF15040">
+            <End Role="TblCourse" EntitySet="TblCourses" />
+            <End Role="TblStudentProfile" EntitySet="TblStudentProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Depar__1BFD2C07" Association="Self.FK__TblStuden__Depar__1BFD2C07">
+            <End Role="TblDepartment" EntitySet="TblDepartments" />
+            <End Role="TblStudentProfile" EntitySet="TblStudentProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblTNPMem__Depar__34C8D9D1" Association="Self.FK__TblTNPMem__Depar__34C8D9D1">
+            <End Role="TblDepartment" EntitySet="TblDepartments" />
+            <End Role="TblTNPMemberProfile" EntitySet="TblTNPMemberProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__25869641" Association="Self.FK__TblStuden__Stude__25869641">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegisters" />
+            <End Role="TblStudentDiploma" EntitySet="TblStudentDiplomas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__1FCDBCEB" Association="Self.FK__TblStuden__Stude__1FCDBCEB">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegisters" />
+            <End Role="TblStudentHSC" EntitySet="TblStudentHSCs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__286302EC" Association="Self.FK__TblStuden__Stude__286302EC">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegisters" />
+            <End Role="TblStudentPostGraduate" EntitySet="TblStudentPostGraduates" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__1A14E395" Association="Self.FK__TblStuden__Stude__1A14E395">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegisters" />
+            <End Role="TblStudentProfile" EntitySet="TblStudentProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__22AA2996" Association="Self.FK__TblStuden__Stude__22AA2996">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegisters" />
+            <End Role="TblStudentSSC" EntitySet="TblStudentSSCs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__2B3F6F97" Association="Self.FK__TblStuden__Stude__2B3F6F97">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegisters" />
+            <End Role="TblStudentUndertGraduate" EntitySet="TblStudentUndertGraduates" />
+          </AssociationSet>
+          <EntitySet Name="TblAdmins" EntityType="LNCT_TNP_DBModel.TblAdmin" />
+          <EntitySet Name="TblStudentAcademics" EntityType="LNCT_TNP_DBModel.TblStudentAcademic" />
+          <AssociationSet Name="FK__TblStuden__Branc__72C60C4A" Association="LNCT_TNP_DBModel.FK__TblStuden__Branc__72C60C4A">
+            <End Role="TblBranch" EntitySet="TblBranches" />
+            <End Role="TblStudentAcademic" EntitySet="TblStudentAcademics" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Cours__71D1E811" Association="LNCT_TNP_DBModel.FK__TblStuden__Cours__71D1E811">
+            <End Role="TblCourse" EntitySet="TblCourses" />
+            <End Role="TblStudentAcademic" EntitySet="TblStudentAcademics" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Depar__70DDC3D8" Association="LNCT_TNP_DBModel.FK__TblStuden__Depar__70DDC3D8">
+            <End Role="TblDepartment" EntitySet="TblDepartments" />
+            <End Role="TblStudentAcademic" EntitySet="TblStudentAcademics" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TblStuden__Stude__6FE99F9F" Association="LNCT_TNP_DBModel.FK__TblStuden__Stude__6FE99F9F">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegisters" />
+            <End Role="TblStudentAcademic" EntitySet="TblStudentAcademics" />
+          </AssociationSet>
+          <EntitySet Name="TblTNPMemberRegisters" EntityType="LNCT_TNP_DBModel.TblTNPMemberRegister" />
+          <EntitySet Name="ExceptionLoggers" EntityType="LNCT_TNP_DBModel.ExceptionLogger" />
+          <EntitySet Name="TblNewPosts" EntityType="LNCT_TNP_DBModel.TblNewPost" />
+          <EntitySet Name="AskQueries" EntityType="LNCT_TNP_DBModel.AskQuery" />
+          <AssociationSet Name="FK__AskQuery__Studen__3C34F16F" Association="LNCT_TNP_DBModel.FK__AskQuery__Studen__3C34F16F">
+            <End Role="TblStudentRegister" EntitySet="TblStudentRegisters" />
+            <End Role="AskQuery" EntitySet="AskQueries" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="TblAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TblStudentAcademic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="SSC_Percentage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SSC_SchoolName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SSC_Board" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SSC_YOP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HSC_Percentage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HSC_SchoolName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HSC_Board" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HSC_YOP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Diploma_Percentage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Diploma_YOP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UG_Percentage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UG_YOP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UG_Back" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UG_YearGap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PG_Percentage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PG_YOP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PG_Back" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PG_YearGap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="CourseID" Type="Int32" />
+          <Property Name="BranchID" Type="Int32" />
+          <NavigationProperty Name="TblBranch" Relationship="LNCT_TNP_DBModel.FK__TblStuden__Branc__72C60C4A" FromRole="TblStudentAcademic" ToRole="TblBranch" />
+          <NavigationProperty Name="TblCourse" Relationship="LNCT_TNP_DBModel.FK__TblStuden__Cours__71D1E811" FromRole="TblStudentAcademic" ToRole="TblCourse" />
+          <NavigationProperty Name="TblDepartment" Relationship="LNCT_TNP_DBModel.FK__TblStuden__Depar__70DDC3D8" FromRole="TblStudentAcademic" ToRole="TblDepartment" />
+          <NavigationProperty Name="TblStudentRegister" Relationship="LNCT_TNP_DBModel.FK__TblStuden__Stude__6FE99F9F" FromRole="TblStudentAcademic" ToRole="TblStudentRegister" />
+        </EntityType>
+        <Association Name="FK__TblStuden__Branc__72C60C4A">
+          <End Type="LNCT_TNP_DBModel.TblBranch" Role="TblBranch" Multiplicity="0..1" />
+          <End Type="LNCT_TNP_DBModel.TblStudentAcademic" Role="TblStudentAcademic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblBranch">
+              <PropertyRef Name="BranchId" />
+            </Principal>
+            <Dependent Role="TblStudentAcademic">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Cours__71D1E811">
+          <End Type="LNCT_TNP_DBModel.TblCourse" Role="TblCourse" Multiplicity="0..1" />
+          <End Type="LNCT_TNP_DBModel.TblStudentAcademic" Role="TblStudentAcademic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCourse">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="TblStudentAcademic">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Depar__70DDC3D8">
+          <End Type="LNCT_TNP_DBModel.TblDepartment" Role="TblDepartment" Multiplicity="0..1" />
+          <End Type="LNCT_TNP_DBModel.TblStudentAcademic" Role="TblStudentAcademic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="TblStudentAcademic">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TblStuden__Stude__6FE99F9F">
+          <End Type="LNCT_TNP_DBModel.TblStudentRegister" Role="TblStudentRegister" Multiplicity="0..1" />
+          <End Type="LNCT_TNP_DBModel.TblStudentAcademic" Role="TblStudentAcademic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="TblStudentAcademic">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TblTNPMemberRegister">
+          <Key>
+            <PropertyRef Name="TNPID" />
+          </Key>
+          <Property Name="TNPID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ExceptionLogger">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExceptionMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ExceptionStackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LogTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TblNewPost">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PostFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="AskQuery">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectOfQuery" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TblStudentRegister" Relationship="LNCT_TNP_DBModel.FK__AskQuery__Studen__3C34F16F" FromRole="AskQuery" ToRole="TblStudentRegister" />
+          <Property Name="Problem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__AskQuery__Studen__3C34F16F">
+          <End Type="LNCT_TNP_DBModel.TblStudentRegister" Role="TblStudentRegister" Multiplicity="0..1" />
+          <End Type="LNCT_TNP_DBModel.AskQuery" Role="AskQuery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblStudentRegister">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="AskQuery">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LNCT_TNP_DBModelStoreContainer" CdmEntityContainer="LNCT_TNP_DBEntities">
+          <EntitySetMapping Name="TblBranches">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblBranch">
+              <MappingFragment StoreEntitySet="TblBranch">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblCourses">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblCourse">
+              <MappingFragment StoreEntitySet="TblCourse">
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblDepartments">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblDepartment">
+              <MappingFragment StoreEntitySet="TblDepartment">
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblStudentDiplomas">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblStudentDiploma">
+              <MappingFragment StoreEntitySet="TblStudentDiploma">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="YOP" ColumnName="YOP" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblStudentHSCs">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblStudentHSC">
+              <MappingFragment StoreEntitySet="TblStudentHSC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="Board" ColumnName="Board" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="YOP" ColumnName="YOP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblStudentPostGraduates">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblStudentPostGraduate">
+              <MappingFragment StoreEntitySet="TblStudentPostGraduate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="YOP" ColumnName="YOP" />
+                <ScalarProperty Name="Back" ColumnName="Back" />
+                <ScalarProperty Name="YearGap" ColumnName="YearGap" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblStudentProfiles">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblStudentProfile">
+              <MappingFragment StoreEntitySet="TblStudentProfile">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblStudentRegisters">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblStudentRegister">
+              <MappingFragment StoreEntitySet="TblStudentRegister">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="EnrollmentNo" ColumnName="EnrollmentNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblStudentSSCs">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblStudentSSC">
+              <MappingFragment StoreEntitySet="TblStudentSSC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="Board" ColumnName="Board" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="YOP" ColumnName="YOP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblStudentUndertGraduates">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblStudentUndertGraduate">
+              <MappingFragment StoreEntitySet="TblStudentUndertGraduate">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="YOP" ColumnName="YOP" />
+                <ScalarProperty Name="Back" ColumnName="Back" />
+                <ScalarProperty Name="YearGap" ColumnName="YearGap" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblTNPMemberProfiles">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblTNPMemberProfile">
+              <MappingFragment StoreEntitySet="TblTNPMemberProfile">
+                <ScalarProperty Name="TNPMemberID" ColumnName="TNPMemberID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblAdmins">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblAdmin">
+              <MappingFragment StoreEntitySet="TblAdmin">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblStudentAcademics">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblStudentAcademic">
+              <MappingFragment StoreEntitySet="TblStudentAcademics">
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="PG_YearGap" ColumnName="PG_YearGap" />
+                <ScalarProperty Name="PG_Back" ColumnName="PG_Back" />
+                <ScalarProperty Name="PG_YOP" ColumnName="PG_YOP" />
+                <ScalarProperty Name="PG_Percentage" ColumnName="PG_Percentage" />
+                <ScalarProperty Name="UG_YearGap" ColumnName="UG_YearGap" />
+                <ScalarProperty Name="UG_Back" ColumnName="UG_Back" />
+                <ScalarProperty Name="UG_YOP" ColumnName="UG_YOP" />
+                <ScalarProperty Name="UG_Percentage" ColumnName="UG_Percentage" />
+                <ScalarProperty Name="Diploma_YOP" ColumnName="Diploma_YOP" />
+                <ScalarProperty Name="Diploma_Percentage" ColumnName="Diploma_Percentage" />
+                <ScalarProperty Name="HSC_YOP" ColumnName="HSC_YOP" />
+                <ScalarProperty Name="HSC_Board" ColumnName="HSC_Board" />
+                <ScalarProperty Name="HSC_SchoolName" ColumnName="HSC_SchoolName" />
+                <ScalarProperty Name="HSC_Percentage" ColumnName="HSC_Percentage" />
+                <ScalarProperty Name="SSC_YOP" ColumnName="SSC_YOP" />
+                <ScalarProperty Name="SSC_Board" ColumnName="SSC_Board" />
+                <ScalarProperty Name="SSC_SchoolName" ColumnName="SSC_SchoolName" />
+                <ScalarProperty Name="SSC_Percentage" ColumnName="SSC_Percentage" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblTNPMemberRegisters">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblTNPMemberRegister">
+              <MappingFragment StoreEntitySet="TblTNPMemberRegister">
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TNPID" ColumnName="TNPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExceptionLoggers">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.ExceptionLogger">
+              <MappingFragment StoreEntitySet="ExceptionLogger">
+                <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+                <ScalarProperty Name="ExceptionStackTrace" ColumnName="ExceptionStackTrace" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="ExceptionMessage" ColumnName="ExceptionMessage" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblNewPosts">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.TblNewPost">
+              <MappingFragment StoreEntitySet="TblNewPost">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="PostFile" ColumnName="PostFile" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AskQueries">
+            <EntityTypeMapping TypeName="LNCT_TNP_DBModel.AskQuery">
+              <MappingFragment StoreEntitySet="AskQuery">
+                <ScalarProperty Name="Problem" ColumnName="Problem" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="SubjectOfQuery" ColumnName="SubjectOfQuery" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

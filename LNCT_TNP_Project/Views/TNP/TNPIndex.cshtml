@@ -1,0 +1,277 @@
+﻿@model IEnumerable<LNCT_TNP_Project.Models.StudentProfileDTO>
+@{
+    Layout = "~/Views/Shared/_LayoutTNP.cshtml";
+
+}
+
+
+<div class="container">
+
+    <h3 class=" mb-3">Student Details List</h3>
+
+    <div class="col-md-12 box">
+        <div class="row">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Enrollment No.</th>
+                                <th>Name</th>
+                                <th>Email ID</th>
+                                <th>Address</th>
+                                <th>MobileNo</th>
+                                <th>DOB</th>
+                                <th>View More</th>
+                                <th>Delete</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EnrollmentNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EmailId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CurrentAddress)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MobileNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DOB)
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info" onclick="ViewStudentDetail('@item.StudentID')">ViewMore</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info" onclick="DeleteStudent('@item.Id')">Delete</button>
+                                        @*<td>@Html.ActionLink("Delete", "StdDelete", new {id=item.Id})</td>*@
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="studentDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Student Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pl-4">
+                    <form>
+                        <div class="form-group">
+                            <label>10 th CGPA</label>
+                            <p><b id="sscGrade"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>School Name</label>
+                            <p><b id="sscSchool"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Passing year</label>
+                            <p><b id="sscPY"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Board</label>
+                            <p><b id="sscBrd"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>12 th CGPA</label>
+                            <p><b id="hscGrade"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>School Name</label>
+                            <p><b id="hscSchool"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Passing year</label>
+                            <p><b id="hscPY"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Board</label>
+                            <p><b id="hscBrd"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Diploma CGPA</label>
+                            <p><b id="diplomaGrade"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Passing Year</label>
+                            <p><b id="diplomaPY"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Undergraduate CGPA</label>
+                            <p><b id="ugGrade"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Back if any</label>
+                            <p><b id="ugBackLog"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Passing Year</label>
+                            <p><b id="ugPY"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Year Gap</label>
+                            <p><b id="ugYearGap"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Postgraduate CGPA</label>
+                            <p><b id="pgGrade"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Passing Year</label>
+                            <p><b id="pgPY"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Back if any</label>
+                            <p><b id="pgBackLog"></b></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Year Gap</label>
+                            <p><b id="pgYearGap"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Department</label>
+                            <p><b id="dept"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Course</label>
+                            <p><b id="course"></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Branch</label>
+                            <p><b id="branch"></b></p>
+                        </div>
+
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script>
+
+    function ViewStudentDetail(studId) {
+
+        $.ajax({
+            url: '/StudentProfile/GetStudenAcademictDetails',
+            type: 'GET',
+            data: {
+                //Passing Input parameter
+                id: studId
+            },
+
+            success: function (result) {
+                console.log(result);
+
+                    $("#sscGrade").text(result.SSC_Percentage);
+                    $("#sscSchool").text(result.SSC_SchoolName);
+                    $("#sscBrd").text(result.SSC_Board);
+                    $("#sscPY").text(result.SSC_YOP);
+                    $("#hscGrade").text(result.HSC_Percentage);
+                    $("#hscSchool").text(result.HSC_SchoolName);
+                    $("#hscPY").text(result.HSC_YOP);
+                    $("#hscBrd").text(result.HSC_Board);
+                    $("#diplomaGrade").text(result.Diploma_Percentage);
+                    $("#diplomaPY").text(result.Diploma_YOP);
+                    $("#ugGrade").text(result.UG_Percentage);
+                    $("#ugBackLog").text(result.UG_Back);
+                    $("#ugPY").text(result.UG_YOP);
+                    $("#ugYearGap").text(result.UG_YearGap);
+                    $("#pgGrade").text(result.PG_Percentage);
+                    $("#pgPY").text(result.PG_YOP);
+                    $("#pgBackLog").text(result.PG_Back);
+                    $("#pgYearGap").text(result.PG_YearGap);
+
+                    //$("#dept").text(result.DepartmentName);
+                    //$("#course").text(result.CourseName);
+                    //$("#branch").text(result.BranchName);
+
+                    $('#studentDetailModal').modal('toggle');
+
+            },
+            error: function () {
+
+                alert("Student record not found");
+            }
+        });
+
+    }
+
+    function DeleteStudent(id) {
+        //here i want to take delete the row with the specific id ,
+
+        $.ajax({
+            type: "POST",
+            url: '/StudentProfile/StdDelete',
+            data: JSON.stringify({ ID: id }),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                if (response.result) {
+                    alert("Data has been deleted.");
+                    window.location = response.url;
+                }
+                alert("Data has been deleted.");
+
+            },
+            error: function () {
+                alert("Error while deleting data");
+            }
+
+
+        });
+    }
+
+</script>
+
+
+
+

@@ -1,0 +1,493 @@
+﻿
+@model LNCT_TNP_Project.Models.StudentProfileDTO
+
+@{
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+    ViewBag.Title = "Create";
+    int studId = Convert.ToInt32(Session["StudentID"]);
+}
+
+<section class="slid_mg">
+    <div class="container">
+
+        <h3 class=" mb-3">Profile</h3>
+
+        <div class="col-md-12 mb-5">
+            <div class="row">
+                <div class="col-md-8 m-auto">
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active personal_btn" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Personal Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="" aria-selected="false" onclick="CreateStudentAcademic('@studId')">Academic Details</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-3" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            @using (Html.BeginForm("Create", "StudentProfile", FormMethod.Post, new { @class = "", id = "myForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-horizontal">
+
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.Id)
+                                    @Html.HiddenFor(model => model.StudentID)
+
+                                    <div class="form-group">
+                                        <label>Name</label>
+
+                                        @if (Session["EnrollmentNo"] != null)
+                                        {
+                                            //if session is enabled then display the session value
+
+                                            <p><b>@Html.Label(Convert.ToString(Session["Name"]), htmlAttributes: new { @class = "control-label col-md-4" })</b></p>
+
+                                        }
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Enrollment no</label>
+
+                                        @if (Session["EnrollmentNo"] != null)
+                                        {
+                                            <p><b>@Html.Label(Convert.ToString(Session["EnrollmentNo"]), htmlAttributes: new { @class = "control-label col-md-4" })</b></p>
+                                        }
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmailId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.EmailId, new { htmlAttributes = new { @class = "form-control", id = "stdEmail" } })
+                                            @Html.ValidationMessageFor(model => model.EmailId, "Please enter Email ID", new { @class = "text-danger", style = "   display:none" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.MobileNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", id = "stdMob" } })
+                                            @Html.ValidationMessageFor(model => model.MobileNo, "Please enter Mobile No", new { @class = "text-danger", style = "   display:none" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.FatherName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control", id = "stdFN" } })
+                                            @Html.ValidationMessageFor(model => model.FatherName, "Please enter Father Name", new { @class = "text-danger", style = "   display:none" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CurrentAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.CurrentAddress, new { htmlAttributes = new { @class = "form-control", id = "stdCA" } })
+                                            @Html.ValidationMessageFor(model => model.CurrentAddress, "Please enter Current Address", new { @class = "text-danger", style = "   display:none" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", id = "stdDOB" } })
+                                            @Html.ValidationMessageFor(model => model.DOB, "Please enter DOB ", new { @class = "text-danger", style = "   display:none" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <button type="button" aria-controls="pills-profile" value="Create" class="btn btn-secondary next_btn mt-3" id="btnSubmit">Save</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+
+                        <div class="tab-pane fade mb-5 " id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+                            <form class="mb-5 pb-3">
+
+                                <div class="form-group">
+                                    <label for="txtSSCCGPA"> 10 th CGPA</label>
+                                    <input type="text" class="form-control" id="txtSSCCGPA" aria-describedby="emailHelp" placeholder="Enter 10 th CGPA">
+                                    <span class="text-danger" style="display:none"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtSSCSchool">School Name</label>
+                                    <input type="text" class="form-control" id="txtSSCSchool" aria-describedby="emailHelp" placeholder="Enter school name">
+                                    <span class="text-danger" style="display:none"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtSSCPY">Passing year </label>
+                                    <input type="text" class="form-control" id="txtSSCPY" aria-describedby="#" placeholder="Enter passing year">
+                                    <span class="text-danger" style="display:none"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtSSCBoard">Board</label>
+                                    <input type="text" class="form-control" id="txtSSCBoard" aria-describedby="#" placeholder="Enter Board">
+                                    <span class="text-danger" style="display:none"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtHSCCGPA"> 12 th CGPA</label>
+                                    <input type="text" class="form-control" id="txtHSCCGPA" aria-describedby="#" placeholder="Enter 12 th CGPA">
+                                    <span class="text-danger" style="display:none"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtHSCSchool"> School Name</label>
+                                    <input type="text" class="form-control" id="txtHSCSchool" aria-describedby="#" placeholder="Enter School name">
+                                    <span class="text-danger" style="display:none"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtHSCPY"> Passing year</label>
+                                    <input type="text" class="form-control" id="txtHSCPY" aria-describedby="#" placeholder="Enter Passing year">
+                                    <span class="text-danger" style="display:none"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtHSCBoard">Board</label>
+                                    <input type="text" class="form-control" id="txtHSCBoard" aria-describedby="#" placeholder="Enter Board">
+                                    <span class="text-danger" style="display:none"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtDipCGPA">Diploma CGPA</label>
+                                    <input type="text" class="form-control" id="txtDipCGPA" aria-describedby="#" placeholder="Enter diploma CGPA">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtDipPY">Passing Year</label>
+                                    <input type="text" class="form-control" id="txtDipPY" aria-describedby="#" placeholder="Enter passing year">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtUGCGPA">Undergraduate CGPA</label>
+                                    <input type="text" class="form-control" id="txtUGCGPA" aria-describedby="#" placeholder="Enter undergraduate CGPA">
+                                    <span class="text-danger" style="display:none"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtUGBack">Back if any</label>
+                                    <span class="text-danger" style="display:none"></span>
+                                    <select class="form-control" id="txtUGBack">
+                                        <option>Select Back if any</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="txtUGYGap">Year Gap</label>
+                                    <input type="text" class="form-control" id="txtUGYGap" aria-describedby="#" placeholder="Enter year gap">
+                                    <span class="text-danger" style="display:none"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtPGCGPA">Postgraduate CGPA</label>
+                                    <input type="text" class="form-control" id="txtPGCGPA" aria-describedby="#" placeholder="Enter postgraduate CGPA">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtPGPY">Passing Year</label>
+                                    <input type="text" class="form-control" id="txtPGPY" aria-describedby="#" placeholder="Enter passing year">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="txtPGBack">Back if any</label>
+                                    <select class="form-control" id="txtPGBack">
+                                        <option>Select Back if any</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="txtPGYGap">Year Gap</label>
+                                    <input type="text" class="form-control" id="txtPGYGap" aria-describedby="#" placeholder="Enter passing year">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Department</label>
+                                    <select class="form-control" id="txtDepartment">
+                                        <option>Select Department</option>
+                                        <option>LNCT</option>
+                                        <option>LNCTS</option>
+                                        <option>SKCT</option>
+                                        @*<option>IMS</option>*@
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect2">Course</label>
+                                    <select class="form-control" id="txtCourse">
+                                        <option>Select Course</option>
+                                        <option>B.Tech</option>
+                                        <option>M.Tech</option>
+                                        <option>MCA</option>
+                                        <option>MBA</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="exampleFormControlSelect3">Branch</label>
+                                    <select class="form-control" id="txtBranch" , name="BranchName">
+                                        <option>Select Branch</option>
+                                        <option>IT</option>
+                                        <option>CSE</option>
+                                        <option>ME</option>
+                                        <option>CIVIL</option>
+                                        <option>EC</option>
+                                    </select>
+                                </div>
+
+                                <button type="button" aria-controls="pills-profile" class="btn btn-secondary next_btn mt-3" id="btnSave">Save</button>
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- Bootstrap core JavaScript -->
+<script src="~/Content/vendor/jquery/jquery.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function () {
+
+
+            var IsValid = ValidationForm();
+            if (IsValid) {
+
+                console.log("string data");
+
+                alert("Successfully record added")
+                $("#myForm").submit();
+
+            }
+        })
+
+        $("#btnSave").click(function () {
+
+            var isValid = ValidationAcademicForm();
+            if (isValid) {
+                var editDate = {
+                    SSC_Percentage: $("#txtSSCCGPA").val(),
+                    SSC_SchoolName: $("#txtSSCSchool").val(),
+                    SSC_Board: $("#txtSSCBoard").val(),
+                    SSC_YOP: $("#txtSSCPY").val(),
+                    HSC_Percentage: $("#txtHSCCGPA").val(),
+                    HSC_SchoolName: $("#txtHSCSchool").val(),
+                    HSC_Board: $("#txtHSCBoard").val(),
+                    HSC_YOP: $("#txtHSCPY").val(),
+                    Diploma_Percentage: $("#txtDipCGPA").val(),
+                    Diploma_YOP: $("#txtDipPY").val(),
+                    UG_Percentage: $("#txtUGCGPA").val(),
+                    UG_YearGap: $("#txtUGYGap").val(),
+                    UG_Back: $("#txtUGBack").val(),
+                    PG_Percentage: $("#txtPGCGPA").val(),
+                    PG_YearGap: $("#txtPGYGap").val(),
+                    PG_Back: $("#txtPGBack").val(),
+                };
+
+                editDate = JSON.stringify(editDate);
+                $.ajax({
+                    type: "POST",
+                    url: "/StudentProfile/CreateAcademic",
+                    dataType: 'Json',
+                    data: {
+                        editableData: editDate
+                    },
+                    success: function (response) {
+
+                        if (response.result) {
+                            //window.location = response.url;
+                            alert("Successfully Record Added!");
+                        }
+                    },
+                    error: function (response) {
+                        alert("error");
+                    }
+                });
+            }
+
+
+
+        });
+    })
+
+    function ValidationForm() {
+        var return_val = true;
+
+
+        if ($('#stdEmail').val().trim() == '') {
+            $('#stdEmail').next('span').show();
+            return_val = false;
+        } else {
+            $('#stdEmail').next('span').hide();
+
+        }
+        if ($('#stdMob').val().trim() == '') {
+            $('#stdMob').next('span').show();
+            return_val = false;
+        } else {
+            $('#stdMob').next('span').hide();
+
+        }
+        if ($('#stdFN').val().trim() == '') {
+            $('#stdFN').next('span').show();
+            return_val = false;
+        } else {
+            $('#stdFN').next('span').hide();
+        }
+        if ($('#stdCA').val().trim() == '') {
+            $('#stdCA').next('span').show();
+            return_val = false;
+        } else {
+            $('#stdCA').next('span').hide();
+        }
+        if ($('#stdDOB').val().trim() == '') {
+            $('#stdDOB').next('span').show();
+            return_val = false;
+        } else {
+            $('#stdDOB').next('span').hide();
+        }
+
+
+        return return_val;
+
+    }
+
+    function CreateStudentAcademic(studId) {
+
+        $.ajax({
+            url: '/StudentProfile/CreateAcademic',
+            type: 'GET',
+            data: {
+                //Passing Input parameter
+                id: studId
+            },
+            success: function (result) {
+                console.log(result);
+                $("#txtSSCCGPA").val(result.SSC_Percentage);
+                $("#txtSSCSchool").val(result.SSC_SchoolName);
+                $("#txtSSCBoard").val(result.SSC_Board);
+                $("#txtSSCPY").val(result.SSC_YOP);
+                $("#txtHSCCGPA").val(result.HSC_Percentage);
+                $("#txtHSCSchool").val(result.HSC_SchoolName);
+                $("#txtHSCPY").val(result.HSC_YOP);
+                $("#txtHSCBoard").val(result.HSC_Board);
+                $("#txtDipCGPA").val(result.Diploma_Percentage);
+                $("#txtDipPY").val(result.Diploma_YOP);
+                $("#txtUGCGPA").val(result.UG_Percentage);
+                $("#txtUGYGap").val(result.UG_YearGap);
+                $("#txtUGBack").val(result.UG_Back);
+                $("#txtPGCGPA").val(result.PG_Percentage);
+                $("#txtPGYGap").val(result.PG_YearGap);
+                $("#txtPGBack").val(result.txtPGBack);
+                $("#txtBranch").val(result.BranchName);
+                $("#txtCourse").val(result.CourseName);
+                $("#txtDepartment").val(result.Department);
+
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+
+    function ValidationAcademicForm() {
+        var return_val = true;
+
+
+        if ($('#txtSSCCGPA').val().trim() == '') {
+            $('#txtSSCCGPA').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#txtSSCCGPA').next('span').hide();
+
+        }
+        if ($('#txtSSCSchool').val().trim() == '') {
+            $('#txtSSCSchool').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#txtSSCSchool').next('span').hide();
+
+        }
+        if ($('#txtSSCBoard').val().trim() == '') {
+            $('#txtSSCBoard').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#txtSSCBoard').next('span').hide();
+        }
+        if ($('#txtSSCPY').val().trim() == '') {
+            $('#txtSSCPY').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#txtSSCPY').next('span').hide();
+        }
+        if ($('#txtHSCCGPA').val().trim() == '') {
+            $('#txtHSCCGPA').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#txtHSCCGPA').next('span').hide();
+        }
+        if ($('#txtHSCSchool').val().trim() == '') {
+            $('#txtHSCSchool').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#txtHSCSchool').next('span').hide();
+        }
+        if ($('#txtHSCBoard').val().trim() == '') {
+            $('#txtHSCBoard').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#txtHSCBoard').next('span').hide();
+        }
+        if ($('#txtHSCPY').val().trim() == '') {
+            $('#txtHSCPY').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#txtHSCPY').next('span').hide();
+        }
+        if ($('#txtUGCGPA').val().trim() == '') {
+            $('#txtUGCGPA').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#txtUGCGPA').next('span').hide();
+        }
+        if ($('#txtUGYGap').val().trim() == '') {
+            $('#txtUGYGap').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#txtUGYGap').next('span').hide();
+        }
+       
+
+        return return_val;
+
+    }
+
+</script>
+

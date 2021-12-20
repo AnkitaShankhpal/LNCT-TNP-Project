@@ -1,0 +1,92 @@
+﻿@model LNCT_TNP_Project.DTO.AdminDTO
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>SB Admin - Login</title>
+    <!-- Custom fonts for this template-->
+    <link href="~/Content/Admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom styles for this template-->
+    <link href="~/Content/Admin/css/sb-admin.css" rel="stylesheet">
+</head>
+<body class="bg-dark">
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+
+                @using (Html.BeginForm("Login", "Admin", FormMethod.Post, new { @class = "user", id = "loginForm" }))
+                {
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control form-control-user", placeholder = "Enter Email Address...", id = "Email", type = "email" })
+                        @Html.ValidationMessageFor(m => m.EmailAddress, "Please enter email ", new { @class = "text-danger", style = "   display:none" })
+
+
+                    </div>
+                    <div class="form-group">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-user", id = "Password", placeholder = "Password" })
+                        @Html.ValidationMessageFor(m => m.Password, "Please enter password ", new { @class = "text-danger", style = "   display:none" })
+
+                    </div>
+                    
+                    <div class="form-group">
+                       
+                        <input type="button" value="Login" class="btn btn-primary btn-user btn-block" id="btnlogin" />
+                    </div>
+
+                    
+                }
+                <hr>
+
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Content/Admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/Admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#btnlogin").click(function () {
+                ValidationForm();
+            });
+        })
+        function ValidationForm() {
+            var return_val = true;
+            if ($('#Email').val().trim() == '') {
+                $('#Email').next('span').show();
+                return_val = false;
+            } else {
+                $('#Email').next('span').hide();
+            }
+            if ($('#Password').val().trim() == '') {
+                $('#Password').next('span').show();
+                return_val = false;
+            } else {
+                $('#Password').next('span').hide();
+            }
+            if (return_val) {
+                $("#loginForm").submit();
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+

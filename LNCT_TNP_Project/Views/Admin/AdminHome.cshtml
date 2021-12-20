@@ -1,0 +1,278 @@
+﻿@model LNCT_TNP_Project.Models.StudentRegisterDTO
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "AdminHome";
+}
+
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Overview</li>
+</ol>
+
+<!-- Icon Cards-->
+
+<div class="col-md-12 mt-5">
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <button type="button" class="btn btn-primary btn-lg btn_box" data-toggle="modal" data-target="#exampleModalCenter">Add Student</button>
+        </div>
+        
+        <div class="col-md-6 text-center">
+            <button type="button" class="btn btn-primary btn-lg btn_box" data-toggle="modal" data-target="#TNPModalCenter">Add TNP</button>
+
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6 text-center">
+            <button type="button" class="btn btn-primary btn-lg btn_box" onClick="location.href='StudentIndex'">Student List</button>
+        </div>
+
+        <div class="col-md-6 text-center">
+            <button type="button" class="btn btn-primary btn-lg btn_box" onClick="location.href='TNPIndex'">TNP List</button>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Student Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Student</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="myForm">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", id = "stName" })
+                            @Html.ValidationMessageFor(model => model.Name, "Please enter Name ", new { @class = "text-danger", style = "   display:none" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EnrollmentNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.EnrollmentNo, new { @class = "form-control", id = "stEnrollmentNo" })
+                            @Html.ValidationMessageFor(model => model.EnrollmentNo, "Please enter EnrollmentNo ", new { @class = "text-danger", style = "   display:none" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Password, new { @class = "form-control", id = "stPassword" })
+                            @Html.ValidationMessageFor(model => model.Password, "Please enter Password ", new { @class = "text-danger", style = "   display:none" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="button" value="Save" class="btn btn-primary" id="btnSubmit" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- TNP Modal -->
+<div class="modal fade" id="TNPModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add TNP Member</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="myForm">
+
+                    <div class="form-group">
+                        <label for="tnp_name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="tnp_name">
+                        <span class="text-danger" style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="tnp_EmailID" class="col-form-label">Email ID:</label>
+                        <input type="email" class="form-control" id="tnp_EmailID">
+                        <span class="text-danger" style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="tnp_Dept" class="col-form-label">Department Name:</label>
+                        <input type="text" class="form-control" id="tnp_Dept">
+                        <span class="text-danger" style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="tnp_Password" class="col-form-label">Password:</label>
+                        <input type="password" class="form-control" id="tnp_Password">
+                        <span class="text-danger" style="display:none"></span>
+                    </div>
+
+
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnTnpSave"> Save </button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Page level plugin JavaScript-->
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script src="~/Content/Admin/vendor/chart.js/Chart.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function () {
+
+            var IsValid = ValidationForm();
+            if (IsValid) {
+
+                var data = $("#myForm").serialize();
+                console.log(data);
+
+                $.ajax({
+
+                    type: "POST",
+                    url: "/Admin/AdminHome",
+                    data: data,
+                    success: function (response) {
+                        $("#exampleModalCenter .close").click();
+                        if (response.result) {
+                            window.location = response.url;
+                        }
+                    },
+                    error: function (response) {
+                        alert("error");
+                    }
+                })
+
+            }
+        })
+
+        $("#btnTnpSave").click(function () {
+
+            var isValid = ValidationTnpForm();
+
+            if (isValid) {
+                var addData = {
+
+                    Name: $("#tnp_name").val(),
+                    EmailID: $("#tnp_EmailID").val(),
+                    Password: $("#tnp_Password").val(),
+                    Department: $("#tnp_Dept").val(),
+                };
+
+                addData = JSON.stringify(addData);
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/AdminHome",
+                    dataType: 'Json',
+                    data: {
+                        addedData: addData
+                    },
+                    success: function (response) {
+
+                        if (response.result) {
+                            window.location = response.url;
+                            //alert("Successfully Record Added!");
+                        }
+                    },
+                    error: function (response) {
+                        alert("error");
+                    }
+                });
+            }
+
+          
+        })
+    })
+
+    function ValidationForm() {
+        var return_val = true;
+        if ($('#stName').val().trim() == '') {
+            $('#stName').next('span').show();
+            return_val = false;
+        } else {
+            $('#stName').next('span').hide();
+        }
+        if ($('#stEnrollmentNo').val().trim() == '') {
+            $('#stEnrollmentNo').next('span').show();
+            return_val = false;
+        } else {
+            $('#stEnrollmentNo').next('span').hide();
+        }
+        if ($('#stPassword').val().trim() == '') {
+            $('#stPassword').next('span').show();
+            return_val = false;
+        } else {
+            $('#stPassword').next('span').hide();
+        }
+
+        return return_val;
+
+    }
+
+    function ValidationTnpForm() {
+        var return_val = true;
+        if ($('#tnp_name').val().trim() == '') {
+            $('#tnp_name').next('span').html("Please enter name").show();
+            return_val = false;
+        } else {
+            $('#tnp_name').next('span').hide();
+        }
+        if ($('#tnp_EmailID').val().trim() == '') {
+            $('#tnp_EmailID').next('span').html("Please enter email address").show();
+            return_val = false;
+        } else {
+            $('#tnp_EmailID').next('span').hide();
+        }
+        if ($('#tnp_Password').val().trim() == '') {
+            $('#tnp_Password').next('span').html("Please enter password").show();
+            return_val = false;
+        } else {
+            $('#tnp_Password').next('span').hide();
+        }
+        if ($('#tnp_Dept').val().trim() == '') {
+            $('#tnp_Dept').next('span').html("Please enter Department Name").show();
+            return_val = false;
+        } else {
+            $('#tnp_Dept').next('span').hide();
+        }
+
+        return return_val;
+
+    }
+
+</script>
+
+
+

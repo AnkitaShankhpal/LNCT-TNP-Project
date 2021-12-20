@@ -1,0 +1,37 @@
+﻿@model IEnumerable<LNCT_TNP_Project.Models.AskQueryDTO>
+
+@{
+    Layout = "~/Views/Shared/_LayoutTNP.cshtml";
+    ViewBag.Title = "ViewQuery";
+}
+<div class="container">
+    <h3 class=" mb-3">View Queries</h3>
+    <div class="col-md-12 box mt-3" style="height:600px;overflow-y:scroll">
+        <div class="row">
+            <div class="col-md-12 mt-3">
+
+                @foreach (var item in Model)
+                {
+                    <h6>
+                        @Html.DisplayNameFor(model => model.StudentName)- @Html.DisplayFor(modelItem => item.StudentName)
+                    </h6>
+                    <h6>
+                        @Html.DisplayNameFor(model => model.EnrollmentNo)- @Html.DisplayFor(modelItem => item.EnrollmentNo)
+                    </h6>
+                    <h6>
+                        @Html.DisplayNameFor(model => model.Subject)- @Html.DisplayFor(modelItem => item.Subject)
+                    </h6>
+                
+                    <p>
+                          @Html.DisplayFor(modelItem => item.Problem)
+                    </p>
+                   
+                    <hr>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>
+

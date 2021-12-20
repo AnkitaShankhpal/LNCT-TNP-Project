@@ -1,0 +1,93 @@
+﻿@model LNCT_TNP_Project.Models.AskQueryDTO
+
+@{
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+    ViewBag.Title = "AskQuery";
+
+}
+
+<div class="container">
+
+    <h3 class=" mb-3">As a Query</h3>
+
+    <div class="col-md-12 mb-5 ">
+        <div class="row">
+            <div class="col-md-8 m-auto">
+
+                @using (Html.BeginForm("AskQuery", "StudentProfile", FormMethod.Post, new { @class = "", id = "askQueryform" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model=>model.StudentID)
+                        <div class="form-group">
+                            <label for="sub">Subject</label>
+                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", id = "sub" } })
+                            <span class="text-danger" style="display:none"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="query">Write your query </label>
+                            @Html.TextAreaFor(model => model.Problem, new { @class = "form-control", rows = "10", id = "query" })
+                            <span class="text-danger" style="display:none"></span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary mb-5" id="btnSubmit">Send</button>
+
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Content/vendor/jquery/jquery.min.js"></script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#btnSubmit").click(function () {
+
+
+            var IsValid = ValidationForm();
+            if (IsValid) {
+
+                console.log("string data");
+
+                alert("Your query has been sent successfully!")
+                $("#askQueryform").submit();
+
+            }
+        })
+
+    })
+
+    function ValidationForm() {
+        var return_val = true;
+
+        if ($('#sub').val().trim() == '') {
+            $('#sub').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#sub').next('span').hide();
+
+        }
+        if ($('#query').val().trim() == '') {
+            $('#query').next('span').html("This field is required.").show();
+            return_val = false;
+        } else {
+            $('#query').next('span').hide();
+
+        }
+        
+        return return_val;
+
+    }
+</script>

@@ -1,0 +1,102 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>LNCT TNP Cell</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/content/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="~/content/css/small-business.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+    <!-- Navigation -->
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
+        <div class="container">
+            @*<a class="navbar-brand" href="#"><img src="~/content/img/ietlogom.png" alt="#" class="logo"></a>*@
+            <a class="navbar-brand" href="#">
+                <img src="~/Content/img/diff.png" alt="#" class="logo" style="width: 110px;height: 85px;">
+                <img src="~/Content/img/logo-name.png" alt="#" class="logo" style="margin: 0px 0px 0px 40px;">
+            </a>
+            <div class=" text-light" id="navbarResponsive">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger " ml-auto data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="~/StudentProfile/Create">Profile</a>
+                        <a class="dropdown-item" href="~/StudentProfile/AskQuery">As a Query</a>
+                        <a class="dropdown-item" href="~/StudentProfile/Change_Password">Change Password</a>
+                        @*<a class="dropdown-item" href="~/StudentProfile/Std_Logout">Logout</a>*@
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <section class="slid_mg">
+        @RenderBody()
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-color">
+        <div class="container">
+            <p class="m-0 text-white">© 2018 IET DAVV. All Rights Reserved. Website managed by IET-DAVV web development team. for any queries contact at: webmaster@ietdavv.edu.in</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="~/Home/Index">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Content/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="~/Content/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <!-- Demo scripts for this page-->
+    <script src="~/Content/js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LNCT_TNP_Project.Models.NewPostResponseDTO>
+
+@{
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+    ViewBag.Title = "Notice_Board";
+   
+}
+
+<div class="container">
+    <h3 class=" mb-3">Notice_Board</h3>
+    <div class="col-md-12 box mt-3" style="height:600px;overflow-y:scroll">
+        <div class="row">
+            <div class="col-md-12 mt-3">
+
+                @foreach (var item in Model)
+                {
+                    <h5>
+                        @Html.DisplayNameFor(model => model.Title) - @Html.DisplayFor(modelItem => item.Title)
+                    </h5>
+
+                    <h6>
+                        @Html.DisplayNameFor(model => model.CreatedOn) - @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </h6>
+
+                    <p>
+                        @Html.DisplayFor(modelItem => item.Post)
+                    </p>
+
+                    <a href="~/Project_Files/@item.PostFile">@item.PostFile</a>
+                   
+                    <hr>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

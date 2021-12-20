@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2c9904c6f7404626b44121114ab2f311" Name="Diagram1">
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblBranch" Width="1.5" PointX="3.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblCourse" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblDepartment" Width="1.5" PointX="3.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblStudentDiploma" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblStudentHSC" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblStudentPostGraduate" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblStudentProfile" Width="1.5" PointX="6" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblStudentRegister" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblStudentSSC" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblStudentUndertGraduate" Width="1.5" PointX="3" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblTNPMemberProfile" Width="1.5" PointX="6" PointY="27.125" IsExpanded="true" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Branc__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Cours__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Depar__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblTNPMem__Depar__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Stude__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Stude__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Stude__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Stude__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Stude__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Stude__2B3F6F97" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblAdmin" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblStudentAcademic" Width="1.5" PointX="9" PointY="9.875" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Branc__72C60C4A" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Cours__71D1E811" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Depar__70DDC3D8" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__TblStuden__Stude__6FE99F9F" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblTNPMemberRegister" Width="1.5" PointX="6.375" PointY="0.75" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.ExceptionLogger" Width="1.5" PointX="6.375" PointY="4.75" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.TblNewPost" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="LNCT_TNP_DBModel.AskQuery" Width="1.5" PointX="3" PointY="15.875" />
+        <AssociationConnector Association="LNCT_TNP_DBModel.FK__AskQuery__Studen__3C34F16F" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,237 @@
+﻿@model IEnumerable<LNCT_TNP_Project.Models.StudentRegisterDTO>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+
+<!-- Breadcrumbs-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Tables</li>
+</ol>
+
+<!-- DataTables Example -->
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fas fa-table"></i>
+        Data Table Example
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.EnrollmentNo)</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Password)</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.EnrollmentNo)</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Password)</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EnrollmentNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Password)
+                            </td>
+
+                            <td><button type="button" class="btn btn-info" onclick="UpdateStudent('@item.StudentID')">Edit</button></td>
+
+                            <td><button type="button" class="btn btn-info" onclick="DeleteStudent('@item.StudentID')">Delete</button></td>
+                            @*<td>@Html.ActionLink("Delete", "Delete", new { id = item.StudentID })</td>*@
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+
+<p class="small text-center text-muted my-5">
+    <em>More table examples coming soon...</em>
+</p>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="StudentEditModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Student</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="EditForm">
+                    <div class="form-group">
+                        <input type="hidden" id="stStudentID">
+                        <label for="stName" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="stName">
+                        <span class="text-danger" style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="stEnrollmentNo" class="col-form-label">EnrollmentNo:</label>
+                        <input type="text" class="form-control" id="stEnrollmentNo">
+                        <span class="text-danger" style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="stPassword" class="col-form-label">Password:</label>
+                        <input type="text" class="form-control" id="stPassword">
+                        <span class="text-danger" style="display:none"></span>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnEditSave">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<script>
+
+    function UpdateStudent(studId) {
+
+        $.ajax({
+            url: '/Admin/StudentDetails',
+            type: 'GET',
+            data: {
+                //Passing Input parameter
+                id: studId
+            },
+            success: function (result) {
+                console.log(result);
+                $("#stStudentID").val(result.StudentID);
+                $("#stName").val(result.Name);
+                $("#stEnrollmentNo").val(result.EnrollmentNo);
+                $("#stPassword").val(result.Password);
+
+                $('#StudentEditModel').modal('toggle');
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+
+    function DeleteStudent(id) {
+        //here i want to take delete the row with the specific id ,
+
+        $.ajax({
+            type: "POST",
+            url: '/Admin/Delete',
+            data: JSON.stringify({ ID: id }),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                if (response.result) {
+                    alert("Data has been deleted.");
+                    window.location = response.url;
+                }
+                //alert("Data has been deleted.");
+
+            },
+            error: function () {
+                alert("Error while deleting data");
+            }
+
+
+        });
+    }
+
+    $(document).ready(function () {
+
+        $("#btnEditSave").click(function () {
+
+            var IsValid = ValidationForm();
+
+            if (IsValid) {
+                var editDate = {
+                    StudentID: $("#stStudentID").val(),
+                    Name: $("#stName").val(),
+                    EnrollmentNo: $("#stEnrollmentNo").val(),
+                    Password: $("#stPassword").val(),
+                };
+                //console.log(data);
+                editDate = JSON.stringify(editDate);
+                $.ajax({
+
+                    type: "POST",
+                    url: "/Admin/EditStudent",
+                    dataType: 'Json',
+                    data: {
+                        editableData: editDate
+                    },
+                    success: function (response) {
+                        $("#StudentEditModel .close").click();
+                        if (response.result) {
+                            window.location = response.url;
+                        }
+                    },
+                    error: function (response) {
+                        alert("error");
+                    }
+                })
+
+            }
+
+
+        })
+
+        function ValidationForm() {
+            var return_val = true;
+            if ($('#stName').val().trim() == '') {
+                $('#stName').next('span').html("This field is required.").show();
+                return_val = false;
+            } else {
+                $('#stName').next('span').hide();
+            }
+            if ($('#stEnrollmentNo').val().trim() == '') {
+                $('#stEnrollmentNo').next('span').html("This field is required.").show();
+                return_val = false;
+            } else {
+                $('#stEnrollmentNo').next('span').hide();
+            }
+            if ($('#stPassword').val().trim() == '') {
+                $('#stPassword').next('span').html("This field is required.").show();
+                return_val = false;
+            } else {
+                $('#stPassword').next('span').hide();
+            }
+
+            return return_val;
+
+        }
+    })
+</script>
